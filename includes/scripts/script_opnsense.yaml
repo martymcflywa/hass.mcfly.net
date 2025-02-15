@@ -1,0 +1,72 @@
+toggle_vpn_hosts:
+  sequence:
+    - service: rest_command.toggle_vpn_hosts
+      response_variable: toggle_response
+    - if:
+      - condition: template
+        value_template: >
+          {{ toggle_response.content.changed == true }}
+      then:
+        - service: rest_command.firewall_alias_reconfigure
+          response_variable: alias_reconfigure_response
+        - if:
+          - condition: template
+            value_template: >
+              {{ alias_reconfigure_response.content.status == "ok" }}
+          then:
+            - service: homeassistant.update_entity
+              entity_id: binary_sensor.vpn_hosts
+toggle_vpn_pihole_hosts:
+  sequence:
+    - service: rest_command.toggle_vpn_pihole_hosts
+      response_variable: toggle_response
+    - if:
+      - condition: template
+        value_template: >
+          {{ toggle_response.content.changed == true }}
+      then:
+        - service: rest_command.firewall_alias_reconfigure
+          response_variable: alias_reconfigure_response
+        - if:
+          - condition: template
+            value_template: >
+              {{ alias_reconfigure_response.content.status == "ok" }}
+          then:
+            - service: homeassistant.update_entity
+              entity_id: binary_sensor.vpn_pihole_hosts
+toggle_vpn_pc_hosts:
+  sequence:
+    - service: rest_command.toggle_vpn_pc_hosts
+      response_variable: toggle_response
+    - if:
+      - condition: template
+        value_template: >
+          {{ toggle_response.content.changed == true }}
+      then:
+        - service: rest_command.firewall_alias_reconfigure
+          response_variable: alias_reconfigure_response
+        - if:
+          - condition: template
+            value_template: >
+              {{ alias_reconfigure_response.content.status == "ok" }}
+          then:
+            - service: homeassistant.update_entity
+              entity_id: binary_sensor.vpn_pc_hosts
+toggle_vpn_mobile_hosts:
+  sequence:
+    - service: rest_command.toggle_vpn_mobile_hosts
+      response_variable: toggle_response
+    - if:
+      - condition: template
+        value_template: >
+          {{ toggle_response.content.changed == true }}
+      then:
+        - service: rest_command.firewall_alias_reconfigure
+          response_variable: alias_reconfigure_response
+        - if:
+          - condition: template
+            value_template: >
+              {{ alias_reconfigure_response.content.status == "ok" }}
+          then:
+            - service: homeassistant.update_entity
+              entity_id: binary_sensor.vpn_mobile_hosts

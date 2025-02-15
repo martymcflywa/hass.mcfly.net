@@ -1,0 +1,7 @@
+views:
+  - path: home
+    title: Home
+    badges: []
+    icon: mdi:home
+    cards:
+      - type: vertical-stack

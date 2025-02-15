@@ -1,0 +1,78 @@
+aircon_cool_2:
+  sequence:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: sensor.tesla_state
+        state: charging
+      - condition: state
+        entity_id: sensor.tesla_geofence
+        state: Home
+      sequence:
+      - action: notify.notify
+        metadata: {}
+        data:
+          message: Aircon not turned on. Tesla home and charging.
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.goodwe_inverter_sems_solar_power
+        below: 4000
+      sequence:
+      - action: notify.notify
+        metadata: {}
+        data:
+          message: Aircon not turned on. Solar less than 4kw.
+    default:
+    - action: climate.set_hvac_mode
+      metadata: {}
+      data:
+        hvac_mode: cool
+      target:
+        entity_id: climate.aircon
+  alias: Aircon on cool
+  description: ''
+  icon: mdi:snowflake
+aircon_on_dry:
+  sequence:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: sensor.tesla_state
+        state: charging
+      - condition: state
+        entity_id: sensor.tesla_geofence
+        state: Home
+      sequence:
+      - action: notify.notify
+        metadata: {}
+        data:
+          message: Aircon not turned on. Tesla home and charging.
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.goodwe_inverter_sems_solar_power
+        below: 4000
+      sequence:
+      - action: notify.notify
+        metadata: {}
+        data:
+          message: Aircon not turned on. Solar less than 4kw.
+    default:
+    - action: climate.set_hvac_mode
+      metadata: {}
+      data:
+        hvac_mode: dry
+      target:
+        entity_id: climate.aircon
+  alias: Aircon on dry
+  description: ''
+  icon: mdi:water-opacity
+turn_aircon_off:
+  sequence:
+  - action: climate.set_hvac_mode
+    metadata: {}
+    data:
+      hvac_mode: 'off'
+    target:
+      entity_id: climate.aircon
+  alias: Aircon off
+  description: ''

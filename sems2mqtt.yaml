@@ -1,0 +1,8 @@
+broker: mqtt.mcfly.net
+broker_user: !secret mqtt_username
+broker_pw: !secret mqtt_password
+username: !secret sems_portal_username
+password: !secret sems_portal_password
+station_id: !secret sems_portal_station_id
+client: sems2mqtt
+scan_interval: 120 # keep to 300 seconds or less!

@@ -1,0 +1,54 @@
+views:
+  - path: vpn
+    title: VPN
+    type: sections
+    sections:
+        - cards:
+          - type: heading
+            heading: Wireguard
+          - type: entities
+            entities:
+              - entity: sensor.airvpn_server
+                name: Server
+                icon: mdi:vpn
+          - type: heading
+            heading: Firewall alias
+          - type: glance
+            entities:
+              - entity: binary_sensor.vpn_hosts
+                name: VPN hosts
+                tap_action:
+                  action: call-service
+                  service: script.toggle_vpn_hosts
+                  entity_id: binary_sensor.vpn_hosts
+              - entity: binary_sensor.vpn_pihole_hosts
+                name: Pi-hole
+                tap_action:
+                  action: call-service
+                  service: script.toggle_vpn_pihole_hosts
+                  entity_id: binary_sensor.vpn_pihole_hosts
+          - type: glance
+            entities:
+              - entity: binary_sensor.vpn_pc_hosts
+                name: PC
+                tap_action:
+                  action: call-service
+                  service: script.toggle_vpn_pc_hosts
+                  entity_id: binary_sensor.vpn_pc_hosts
+              - entity: binary_sensor.vpn_mobile_hosts
+                name: Mobile
+                tap_action:
+                  action: call-service
+                  service: script.toggle_vpn_mobile_hosts
+                  entity_id: binary_sensor.vpn_mobile_hosts
+          # - type: button
+          #   name: Toggle VPN hosts
+          #   icon: >
+          #     {% if is_state('binary_sensor.vpn_hosts', 'on') %}
+          #       mdi:check-network-outline
+          #     {% else %}
+          #       mdi:mdi:close-network-outline
+          #     {% endif %}
+          #   tap_action:
+          #     action: call-service
+          #     service: script.toggle_vpn_hosts

@@ -1,0 +1,4 @@
+- action: 'URI'
+  title: 'View map'
+  icon: 'mdi:crosshairs-gps'
+  uri: '/dashboard-teslamate/map'

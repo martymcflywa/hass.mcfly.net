@@ -1,0 +1,33 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+climate: !include climate.yaml
+mqtt: !include includes/sensors/sensor_mqtt.yaml
+sems2mqtt: !include sems2mqtt.yaml
+
+binary_sensor opnsense: !include includes/sensors/rest_binary_sensor_opnsense.yaml
+sensor opnsense: !include includes/sensors/rest_sensor_opnsense.yaml
+rest_command: !include includes/rest_commands/rest_command_opnsense.yaml
+script opnsense: !include includes/scripts/script_opnsense.yaml
+
+lovelace:
+  mode: storage
+  dashboards:
+    dashboard-opnsense:
+      mode: yaml
+      title: OPNSense
+      show_in_sidebar: true
+      filename: includes/dashboards/dashboard_opnsense.yaml
+    dashboard-teslamate:
+      mode: yaml
+      title: Teslamate
+      show_in_sidebar: true
+      filename: includes/dashboards/dashboard_teslamate.yaml

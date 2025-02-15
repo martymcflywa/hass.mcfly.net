@@ -1,0 +1,47 @@
+- platform: rest
+  unique_id: vpn_hosts
+  name: VPN Hosts
+  resource: https://opnsense.mcfly.net/api/firewall/alias/getItem/749c2c1d-e1fa-4fae-93bb-c9f83cf651b1
+  method: GET
+  verify_ssl: false
+  authentication: basic
+  username: !secret opns_key
+  password: !secret opns_secret
+  device_class: connectivity
+  value_template: '{{ value_json.alias.enabled }}'
+
+- platform: rest
+  unique_id: vpn_pihole_hosts
+  name: VPN Pihole Hosts
+  resource: https://opnsense.mcfly.net/api/firewall/alias/getItem/b8635278-2626-4dbb-a044-3a5c1927bc99
+  method: GET
+  verify_ssl: false
+  authentication: basic
+  username: !secret opns_key
+  password: !secret opns_secret
+  device_class: connectivity
+  value_template: '{{ value_json.alias.enabled }}'
+
+- platform: rest
+  unique_id: vpn_pc_hosts
+  name: VPN PC Hosts
+  resource: https://opnsense.mcfly.net/api/firewall/alias/getItem/85f8b05b-6e0a-41ab-9a9c-b290888cfa0b
+  method: GET
+  verify_ssl: false
+  authentication: basic
+  username: !secret opns_key
+  password: !secret opns_secret
+  device_class: connectivity
+  value_template: '{{ value_json.alias.enabled }}'
+
+- platform: rest
+  unique_id: vpn_mobile_hosts
+  name: VPN Mobile Hosts
+  resource: https://opnsense.mcfly.net/api/firewall/alias/getItem/8c893d62-5dcf-44bd-b533-5aef63d30076
+  method: GET
+  verify_ssl: false
+  authentication: basic
+  username: !secret opns_key
+  password: !secret opns_secret
+  device_class: connectivity
+  value_template: '{{ value_json.alias.enabled }}'

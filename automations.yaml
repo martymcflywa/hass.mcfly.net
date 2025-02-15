@@ -1,0 +1,439 @@
+- id: '1669182356759'
+  alias: Turn aircon off when PV power is below 4kw
+  description: ''
+  triggers:
+  - entity_id: sensor.pv_power
+    below: 4000
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+    trigger: numeric_state
+  conditions:
+  - condition: and
+    conditions:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.aircon
+        state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.aircon
+        state: fan_only
+    - condition: time
+      before: '17:00:00'
+      weekday:
+      - sun
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+      - sat
+      after: 07:00:00
+  actions:
+  - action: script.turn_aircon_off
+    metadata: {}
+    data: {}
+  mode: single
+- id: '1672745562774'
+  alias: Message aircon cool mode
+  description: ''
+  triggers:
+  - entity_id:
+    - climate.aircon
+    from: 'off'
+    to: cool
+    trigger: state
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      message: Cool mode.
+      title: Aircon
+  mode: single
+- id: '1672745823104'
+  alias: Message aircon off
+  description: ''
+  triggers:
+  - entity_id:
+    - climate.aircon
+    to: 'off'
+    trigger: state
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      message: Turned off.
+      title: Aircon
+  mode: single
+- id: '1672746614331'
+  alias: Message aircon heat mode
+  description: ''
+  triggers:
+  - entity_id:
+    - climate.aircon
+    to: heat
+    trigger: state
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      message: Heat mode.
+      title: Aircon
+  mode: single
+- id: '1672747249238'
+  alias: 'Message aircon unavailable '
+  description: ''
+  triggers:
+  - entity_id:
+    - climate.aircon
+    to: unavailable
+    trigger: state
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      message: Unavailable.
+      title: Aircon
+  mode: single
+- id: '1672747296663'
+  alias: Message aircon state unknown
+  description: ''
+  triggers:
+  - entity_id:
+    - climate.aircon
+    to: unknown
+    trigger: state
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      message: State unknown.
+      title: Aircon
+  mode: single
+- id: '1672747344021'
+  alias: Message aircon fan mode
+  description: ''
+  triggers:
+  - entity_id:
+    - climate.aircon
+    to: fan_only
+    trigger: state
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      message: Fan mode.
+      title: Aircon
+  mode: single
+- id: '1672831548400'
+  alias: Message Yeelight on
+  description: ''
+  triggers:
+  - entity_id:
+    - light.yeelight_bslamp3_0x158ee685
+    to: 'on'
+    trigger: state
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      message: Yeelight on
+  mode: single
+- id: '1672831591431'
+  alias: 'Message Yeelight off '
+  description: ''
+  triggers:
+  - entity_id:
+    - light.yeelight_bslamp3_0x158ee685
+    to: 'off'
+    trigger: state
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      message: Yeelight off
+  mode: single
+- id: '1672835824776'
+  alias: 'Message Yeelight unavailable '
+  description: ''
+  triggers:
+  - entity_id:
+    - light.yeelight_bslamp3_0x158ee685
+    to: unavailable
+    trigger: state
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      message: 'Yeelight unavailable '
+  mode: single
+- id: '1672835879462'
+  alias: Message Yeelight state unknown
+  description: ''
+  triggers:
+  - entity_id:
+    - light.yeelight_bslamp3_0x158ee685
+    to: unknown
+    trigger: state
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      message: 'Yeelight state unknown '
+  mode: single
+- id: '1676712611572'
+  alias: Turn aircon off at 1600
+  description: ''
+  triggers:
+  - at: '16:00:00'
+    trigger: time
+  conditions:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: climate.aircon
+      state: 'off'
+  actions:
+  - action: script.turn_aircon_off
+    metadata: {}
+    data: {}
+  mode: single
+- id: '1708703405534'
+  alias: Turn aircon off at 2200
+  description: ''
+  triggers:
+  - trigger: time
+    at: '22:00:00'
+  conditions:
+  - condition: and
+    conditions:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.aircon
+        state: 'off'
+        for:
+          hours: 0
+          minutes: 0
+          seconds: 0
+  actions:
+  - action: script.turn_aircon_off
+    metadata: {}
+    data: {}
+  mode: single
+- id: '1738232798132'
+  alias: Turn aircon off at 2100
+  description: ''
+  triggers:
+  - at: '21:00:00'
+    trigger: time
+  conditions:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: climate.aircon
+      state: 'off'
+  actions:
+  - action: script.turn_aircon_off
+    metadata: {}
+    data: {}
+  mode: single
+- id: '1738501000200'
+  alias: Turn aircon off when Tesla charging at home
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.tesla_state
+    to: charging
+  conditions:
+  - condition: state
+    entity_id: sensor.tesla_geofence
+    state: Home
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: climate.aircon
+      state: 'off'
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      message: Tesla started charging at home. Turning off aircon.
+  - action: script.turn_aircon_off
+    metadata: {}
+    data: {}
+  mode: single
+- id: '1738504050933'
+  alias: Message Tesla charge AM reminder
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.goodwe_inverter_sems_solar_power
+    above: 1500
+  conditions:
+  - condition: state
+    entity_id: sensor.tesla_geofence
+    state: Home
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.tesla_plugged_in
+      state: 'on'
+  - condition: time
+    before: '10:00:00'
+    weekday:
+    - sun
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      message: Plug charger in.
+      title: Tesla
+  mode: single
+- id: '1738541348716'
+  alias: Message Tesla arrived home
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.home_nearest_direction_of_travel
+    to: arrived
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      message: Arrived home.
+      title: Tesla
+  mode: single
+- id: '1738542452600'
+  alias: Message Tesla navigating home
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.tesla_active_route_destination
+    to: Home
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      message: Tesla heading home. Distance {{ states('sensor.tesla_active_route_distance_to_arrival')
+        | float(0) | round(2) }} km, ETA {{ states('sensor.tesla_active_route_minutes_to_arrival')
+        | float(0) | round(2) }} min.
+      data:
+        actions:
+        - action: URI
+          title: View map
+          icon: mdi:crosshairs-gps
+          uri: /dashboard-teslamate/map
+  mode: single
+- id: '1738719581465'
+  alias: Message Tesla driving
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.tesla_state
+    to: driving
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      message: Started driving.
+      title: Tesla
+      data:
+        actions:
+        - action: URI
+          title: View map
+          icon: mdi:crosshairs-gps
+          uri: /dashboard-teslamate/map
+  mode: single
+- id: '1739516840026'
+  alias: Message opnsense vpn hosts toggled
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.vpn_hosts
+    from:
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      title: OPNSense
+      message: vpn_hosts {{ states('binary_sensor.vpn_hosts') }}
+  mode: single
+- id: '1739517581715'
+  alias: Message opnsense vpn pihole hosts toggled
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.vpn_pihole_hosts
+    from:
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      title: OPNSense
+      message: vpn_pihole_hosts {{ states('binary_sensor.vpn_pihole_hosts') }}
+  mode: single
+- id: '1739517688861'
+  alias: Message opnsense vpn pc hosts toggled
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.vpn_pc_hosts
+    from:
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      title: OPNSense
+      message: vpn_pc_hosts {{ states('binary_sensor.vpn_pc_hosts') }}
+  mode: single
+- id: '1739517780240'
+  alias: Message opnsense vpn mobile hosts toggled
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.vpn_mobile_hosts
+    from:
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      title: OPNSense
+      message: vpn_mobile_hosts {{ states('binary_sensor.vpn_mobile_hosts') }}
+  mode: single
