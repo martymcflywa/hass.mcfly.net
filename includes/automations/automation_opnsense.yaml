@@ -1,33 +1,3 @@
-# - id: wg0_peers_set_options
-#   alias: wg0 peers set options
-#   trigger:
-#     - platform: state
-#       entity_id: sensor.wg0_peers
-#   action:
-#     - service: input_select.set_options
-#       target:
-#         entity_id: input_select.wg0_peers
-#       data:
-#         options: >
-#           {% set data = namespace(peers = []) %}
-#           {% set peers = merge_response(state_attr('sensor.wg0_peers', 'peers')) %}
-#           {% for peer in peers %}
-#             {% set data.peers = data.peers + [peer.value] %}
-#           {% endfor %}
-#           {{ data.peers }}
-# - id: wg0_peers_select_option
-#   alias: wg0 peers select option
-#   trigger:
-#     - platform: state
-#       entity_id: sensor.wg0_selected_peer
-#   action:
-#     - service: input_select.select_option
-#       target:
-#         entity_id: input_select.wg0_peers
-#       data:
-#         option: >
-#           {{ states('sensor.wg0_selected_peer') }}
-
 - id: update_wg0_peers
   alias: Update wg0 peers
   trigger:
@@ -35,3 +5,43 @@
       entity_id: sensor.wg0_peers
   action:
     - service: script.update_wg0_peers
+
+- id: update_wg0_peers_on_startup
+  alias: Update wg0 peers on startup
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: script.update_wg0_peers
+
+- id: update_vpn_hosts_input_boolean_on_startup
+  alias: Update vpn_hosts input_boolean on startup
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: script.update_vpn_hosts
+
+- id: update_vpn_pihole_hosts_input_boolean_on_startup
+  alias: Update vpn_pihole_hosts input_boolean on startup
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: script.update_vpn_pihole_hosts
+
+- id: update_vpn_pc_hosts_input_boolean_on_startup
+  alias: Update vpn_pc_hosts input_boolean on startup
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: script.update_vpn_pc_hosts
+
+- id: update_vpn_mobile_hosts_input_boolean_on_startup
+  alias: Update vpn_mobile_hosts input_boolean on startup
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: script.update_vpn_mobile_hosts

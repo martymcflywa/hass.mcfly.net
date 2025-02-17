@@ -1,0 +1,8 @@
+vpn_hosts:
+  name: VPN Hosts
+vpn_pihole_hosts:
+  name: VPN Pihole Hosts
+vpn_pc_hosts:
+  name: VPN PC Hosts
+vpn_mobile_hosts:
+  name: VPN Mobile Hosts

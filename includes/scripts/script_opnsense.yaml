@@ -14,8 +14,19 @@ toggle_vpn_hosts:
             value_template: >
               {{ alias_reconfigure_response.content.status == "ok" }}
           then:
+            - if:
+              - condition: template
+                value_template: >
+                  {{ toggle_response.content.result == 'Enabled' }}
+              then:
+                - service: input_boolean.turn_on
+                  entity_id: input_boolean.vpn_hosts
+              else:
+                - service: input_boolean.turn_off
+                  entity_id: input_boolean.vpn_hosts
             - service: homeassistant.update_entity
               entity_id: binary_sensor.vpn_hosts
+
 toggle_vpn_pihole_hosts:
   sequence:
     - service: rest_command.toggle_vpn_pihole_hosts
@@ -32,8 +43,19 @@ toggle_vpn_pihole_hosts:
             value_template: >
               {{ alias_reconfigure_response.content.status == "ok" }}
           then:
+            - if:
+              - condition: template
+                value_template: >
+                  {{ toggle_response.content.result == 'Enabled' }}
+              then:
+                - service: input_boolean.turn_on
+                  entity_id: input_boolean.vpn_pihole_hosts
+              else:
+                - service: input_boolean.turn_off
+                  entity_id: input_boolean.vpn_pihole_hosts
             - service: homeassistant.update_entity
               entity_id: binary_sensor.vpn_pihole_hosts
+
 toggle_vpn_pc_hosts:
   sequence:
     - service: rest_command.toggle_vpn_pc_hosts
@@ -50,8 +72,19 @@ toggle_vpn_pc_hosts:
             value_template: >
               {{ alias_reconfigure_response.content.status == "ok" }}
           then:
+            - if:
+              - condition: template
+                value_template: >
+                  {{ toggle_response.content.result == 'Enabled' }}
+              then:
+                - service: input_boolean.turn_on
+                  entity_id: input_boolean.vpn_pc_hosts
+              else:
+                - service: input_boolean.turn_off
+                  entity_id: input_boolean.vpn_pc_hosts
             - service: homeassistant.update_entity
               entity_id: binary_sensor.vpn_pc_hosts
+
 toggle_vpn_mobile_hosts:
   sequence:
     - service: rest_command.toggle_vpn_mobile_hosts
@@ -68,8 +101,19 @@ toggle_vpn_mobile_hosts:
             value_template: >
               {{ alias_reconfigure_response.content.status == "ok" }}
           then:
+            - if:
+              - condition: template
+                value_template: >
+                  {{ toggle_response.content.result == 'Enabled' }}
+              then:
+                - service: input_boolean.turn_on
+                  entity_id: input_boolean.vpn_mobile_hosts
+              else:
+                - service: input_boolean.turn_off
+                  entity_id: input_boolean.vpn_mobile_hosts
             - service: homeassistant.update_entity
               entity_id: binary_sensor.vpn_mobile_hosts
+
 update_wg0_peers:
   sequence:
     - service: input_select.set_options
@@ -91,3 +135,63 @@ update_wg0_peers:
       data:
         option: >
           {{ states('sensor.wg0_selected_peer') }}
+
+update_vpn_hosts:
+  sequence:
+    - service: homeassistant.update_entity
+      entity_id: binary_sensor.vpn_hosts
+    - if:
+      - condition: state
+        entity_id: binary_sensor.vpn_hosts
+        state: 'on'
+      then:
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.vpn_hosts
+      else:
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.vpn_hosts
+
+update_vpn_pihole_hosts:
+  sequence:
+    - service: homeassistant.update_entity
+      entity_id: binary_sensor.vpn_pihole_hosts
+    - if:
+      - condition: state
+        entity_id: binary_sensor.vpn_pihole_hosts
+        state: 'on'
+      then:
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.vpn_pihole_hosts
+      else:
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.vpn_pihole_hosts
+
+update_vpn_pc_hosts:
+  sequence:
+    - service: homeassistant.update_entity
+      entity_id: binary_sensor.vpn_pc_hosts
+    - if:
+      - condition: state
+        entity_id: binary_sensor.vpn_pc_hosts
+        state: 'on'
+      then:
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.vpn_pc_hosts
+      else:
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.vpn_pc_hosts
+
+update_vpn_mobile_hosts:
+  sequence:
+    - service: homeassistant.update_entity
+      entity_id: binary_sensor.vpn_mobile_hosts
+    - if:
+      - condition: state
+        entity_id: binary_sensor.vpn_mobile_hosts
+        state: 'on'
+      then:
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.vpn_mobile_hosts
+      else:
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.vpn_mobile_hosts
