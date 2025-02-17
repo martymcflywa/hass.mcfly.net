@@ -5,12 +5,13 @@ views:
     sections:
         - cards:
           - type: heading
-            heading: Wireguard
+            heading: Wireguard peer
           - type: entities
             entities:
-              - entity: sensor.airvpn_server
-                name: Server
+              - entity: sensor.wg0_selected_peer
+                name: wg0 selected peer
                 icon: mdi:vpn
+              - entity: input_select.wg0_peers
           - type: heading
             heading: Firewall alias
           - type: glance
@@ -41,14 +42,3 @@ views:
                   action: call-service
                   service: script.toggle_vpn_mobile_hosts
                   entity_id: binary_sensor.vpn_mobile_hosts
-          # - type: button
-          #   name: Toggle VPN hosts
-          #   icon: >
-          #     {% if is_state('binary_sensor.vpn_hosts', 'on') %}
-          #       mdi:check-network-outline
-          #     {% else %}
-          #       mdi:mdi:close-network-outline
-          #     {% endif %}
-          #   tap_action:
-          #     action: call-service
-          #     service: script.toggle_vpn_hosts

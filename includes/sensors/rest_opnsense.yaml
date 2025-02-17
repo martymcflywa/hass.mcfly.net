@@ -4,8 +4,8 @@
   password: !secret opns_secret
   resource: https://opnsense.mcfly.net/api/wireguard/server/getServer/b007cda3-7d52-472e-96b9-f0b4a8bf4ff8
   sensor:
-    - unique_id: airvpn_server
-      name: AirVPN server
+    - unique_id: wg0_selected_peer
+      name: wg0 selected peer
       value_template: >
         {% set data = namespace(servers = []) %}
         {% set peers = merge_response(value_json.server.peers) %}

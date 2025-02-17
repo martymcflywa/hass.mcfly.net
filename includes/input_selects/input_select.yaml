@@ -1,0 +1,5 @@
+# Namespaces not supported for input_select. Define all input_select here.
+wg0_peers:
+  name: wg0 peers
+  options:
+    - init

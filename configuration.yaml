@@ -17,6 +17,8 @@ binary_sensor opnsense: !include includes/sensors/rest_binary_sensor_opnsense.ya
 rest: !include includes/sensors/rest_opnsense.yaml
 rest_command: !include includes/rest_commands/rest_command_opnsense.yaml
 script opnsense: !include includes/scripts/script_opnsense.yaml
+input_select: !include includes/input_selects/input_select.yaml
+automation opnsense: !include includes/automations/automation_opnsense.yaml
 
 lovelace:
   mode: storage

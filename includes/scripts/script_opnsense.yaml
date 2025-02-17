@@ -70,3 +70,24 @@ toggle_vpn_mobile_hosts:
           then:
             - service: homeassistant.update_entity
               entity_id: binary_sensor.vpn_mobile_hosts
+update_wg0_peers:
+  sequence:
+    - service: input_select.set_options
+      target:
+        entity_id: input_select.wg0_peers
+      data:
+        options: >
+          {% set data = namespace(peers = []) %}
+          {% set peers = merge_response(state_attr('sensor.wg0_peers', 'peers')) %}
+          {% for peer in peers %}
+            {% if peer.value != 'home0' %}
+              {% set data.peers = data.peers + [peer.value] %}
+            {% endif %}
+          {% endfor %}
+          {{ data.peers }}
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.wg0_peers
+      data:
+        option: >
+          {{ states('sensor.wg0_selected_peer') }}
