@@ -19,6 +19,7 @@ rest_command: !include includes/rest_commands/rest_command_opnsense.yaml
 script opnsense: !include includes/scripts/script_opnsense.yaml
 input_select: !include includes/input_selects/input_select.yaml
 automation opnsense: !include includes/automations/automation_opnsense.yaml
+switch opnsense: !include includes/switches/switch_opnsense.yaml
 
 lovelace:
   mode: storage

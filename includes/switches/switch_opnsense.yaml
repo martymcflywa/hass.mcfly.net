@@ -1,0 +1,54 @@
+- platform: template
+  switches:
+    vpn_hosts:
+      unique_id: vpn_hosts
+      friendly_name: VPN Hosts
+      value_template: >
+        {{ states('binary_sensor.vpn_hosts') }}
+      turn_on:
+        action: rest_command.toggle_vpn_hosts
+        target:
+          entity_id: rest_command.toggle_vpn_hosts
+      turn_off:
+        action: rest_command.toggle_vpn_hosts
+        target:
+          entity_id: rest_command.toggle_vpn_hosts
+    vpn_pihole_hosts:
+      unique_id: vpn_pihole_hosts
+      friendly_name: VPN Pihole Hosts
+      value_template: >
+        {{ states('binary_sensor.vpn_pihole_hosts') }}
+      turn_on:
+        action: rest_command.toggle_vpn_pihole_hosts
+        target:
+          entity_id: rest_command.toggle_vpn_pihole_hosts
+      turn_off:
+        action: rest_command.toggle_vpn_pihole_hosts
+        target:
+          entity_id: rest_command.toggle_vpn_pihole_hosts
+    vpn_pc_hosts:
+      unique_id: vpn_pc_hosts
+      friendly_name: VPN PC Hosts
+      value_template: >
+        {{ states('binary_sensor.vpn_pc_hosts') }}
+      turn_on:
+        action: rest_command.toggle_vpn_pc_hosts
+        target:
+          entity_id: rest_command.toggle_vpn_pc_hosts
+      turn_off:
+        action: rest_command.toggle_vpn_pc_hosts
+        target:
+          entity_id: rest_command.toggle_vpn_pc_hosts
+    vpn_mobile_hosts:
+      unique_id: vpn_mobile_hosts
+      friendly_name: VPN Mobile Hosts
+      value_template: >
+        {{ states('binary_sensor.vpn_mobile_hosts') }}
+      turn_on:
+        action: rest_command.toggle_vpn_mobile_hosts
+        target:
+          entity_id: rest_command.toggle_vpn_mobile_hosts
+      turn_off:
+        action: rest_command.toggle_vpn_mobile_hosts
+        target:
+          entity_id: rest_command.toggle_vpn_mobile_hosts

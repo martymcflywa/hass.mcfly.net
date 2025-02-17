@@ -4,41 +4,54 @@ views:
     type: sections
     sections:
         - cards:
-          - type: heading
-            heading: Wireguard peer
-          - type: entities
-            entities:
-              - entity: sensor.wg0_selected_peer
-                name: wg0 selected peer
-                icon: mdi:vpn
-              - entity: input_select.wg0_peers
-          - type: heading
-            heading: Firewall alias
-          - type: glance
-            entities:
-              - entity: binary_sensor.vpn_hosts
-                name: VPN hosts
-                tap_action:
-                  action: call-service
-                  service: script.toggle_vpn_hosts
-                  entity_id: binary_sensor.vpn_hosts
-              - entity: binary_sensor.vpn_pihole_hosts
-                name: Pi-hole
-                tap_action:
-                  action: call-service
-                  service: script.toggle_vpn_pihole_hosts
-                  entity_id: binary_sensor.vpn_pihole_hosts
-          - type: glance
-            entities:
-              - entity: binary_sensor.vpn_pc_hosts
-                name: PC
-                tap_action:
-                  action: call-service
-                  service: script.toggle_vpn_pc_hosts
-                  entity_id: binary_sensor.vpn_pc_hosts
-              - entity: binary_sensor.vpn_mobile_hosts
-                name: Mobile
-                tap_action:
-                  action: call-service
-                  service: script.toggle_vpn_mobile_hosts
-                  entity_id: binary_sensor.vpn_mobile_hosts
+          - type: vertical-stack
+            title: Wireguard
+            cards:
+              - type: heading
+                heading: wg0 peer
+              - type: entities
+                entities:
+                  - entity: input_select.wg0_peers
+              - type: heading
+                heading: Firewall alias
+              - type: entities
+                entities:
+                  - entity: switch.vpn_hosts
+                  - entity: switch.vpn_pihole_hosts
+                  - entity: switch.vpn_pc_hosts
+                  - entity: switch.vpn_mobile_hosts
+              - type: heading
+                heading: Sensors
+              - type: entities
+                entities:
+                  - entity: sensor.wg0_selected_peer
+                    name: wg0 selected peer
+                    icon: mdi:vpn
+              - type: glance
+                entities:
+                  - entity: binary_sensor.vpn_hosts
+                    name: VPN hosts
+                    tap_action:
+                      action: call-service
+                      service: script.toggle_vpn_hosts
+                      entity_id: binary_sensor.vpn_hosts
+                  - entity: binary_sensor.vpn_pihole_hosts
+                    name: Pi-hole
+                    tap_action:
+                      action: call-service
+                      service: script.toggle_vpn_pihole_hosts
+                      entity_id: binary_sensor.vpn_pihole_hosts
+              - type: glance
+                entities:
+                  - entity: binary_sensor.vpn_pc_hosts
+                    name: PC
+                    tap_action:
+                      action: call-service
+                      service: script.toggle_vpn_pc_hosts
+                      entity_id: binary_sensor.vpn_pc_hosts
+                  - entity: binary_sensor.vpn_mobile_hosts
+                    name: Mobile
+                    tap_action:
+                      action: call-service
+                      service: script.toggle_vpn_mobile_hosts
+                      entity_id: binary_sensor.vpn_mobile_hosts

@@ -2,11 +2,12 @@
   alias: Turn aircon off when PV power is below 4kw
   description: ''
   triggers:
-  - entity_id: sensor.pv_power
+  - entity_id:
+    - sensor.pv_power
     below: 4000
     for:
       hours: 0
-      minutes: 15
+      minutes: 10
       seconds: 0
     trigger: numeric_state
   conditions:
@@ -68,8 +69,8 @@
   - action: notify.notify
     metadata: {}
     data:
-      message: Turned off.
       title: Aircon
+      message: Off.
   mode: single
 - id: '1672746614331'
   alias: Message aircon heat mode
