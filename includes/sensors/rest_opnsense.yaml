@@ -31,3 +31,19 @@
           {% set data.servers = data.servers + [peer.value] %}
         {% endfor %}
         {{ data.servers | join(', ') }}
+- authentication: basic
+  verify_ssl: false
+  username: !secret opns_key
+  password: !secret opns_secret
+  resource: https://opnsense.mcfly.net/api/wireguard/client/searchClient
+  sensor:
+    - unique_id: wg0_selected_peer_id
+      name: wg0 selected peer id
+      value_template: >
+        {% set data = namespace(id = '') %}
+        {% for row in value_json.rows %}
+          {% if row.name == states('input_select.wg0_peers') %}
+            {% set data.id = row.uuid %}
+          {% endif %}
+        {% endfor %}
+        {{ data.id }}

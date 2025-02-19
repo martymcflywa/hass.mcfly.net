@@ -135,6 +135,8 @@ update_wg0_peers:
       data:
         option: >
           {{ states('sensor.wg0_selected_peer') }}
+    - service: homeassistant.update_entity
+      entity_id: rest_sensor.wg0_selected_peer_id
 
 update_vpn_hosts:
   sequence:
@@ -195,3 +197,8 @@ update_vpn_mobile_hosts:
       else:
         - service: input_boolean.turn_off
           entity_id: input_boolean.vpn_mobile_hosts
+
+# turn off wireguard
+# disconnect airvpn session
+# select wireguard peer
+# turn on wireguard
