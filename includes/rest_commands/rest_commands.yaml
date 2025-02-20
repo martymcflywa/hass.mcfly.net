@@ -1,0 +1,90 @@
+toggle_vpn_hosts:
+  url: https://opnsense.mcfly.net/api/firewall/alias/toggleItem/749c2c1d-e1fa-4fae-93bb-c9f83cf651b1
+  method: POST
+  payload: '{}'
+  username: !secret opns_key
+  password: !secret opns_secret
+  verify_ssl: false
+  content_type: application/json
+
+toggle_vpn_pihole_hosts:
+  url: https://opnsense.mcfly.net/api/firewall/alias/toggleItem/b8635278-2626-4dbb-a044-3a5c1927bc99
+  method: POST
+  payload: '{}'
+  username: !secret opns_key
+  password: !secret opns_secret
+  verify_ssl: false
+  content_type: application/json
+
+toggle_vpn_pc_hosts:
+  url: https://opnsense.mcfly.net/api/firewall/alias/toggleItem/85f8b05b-6e0a-41ab-9a9c-b290888cfa0b
+  method: POST
+  payload: '{}'
+  username: !secret opns_key
+  password: !secret opns_secret
+  verify_ssl: false
+  content_type: application/json
+
+toggle_vpn_mobile_hosts:
+  url: https://opnsense.mcfly.net/api/firewall/alias/toggleItem/8c893d62-5dcf-44bd-b533-5aef63d30076
+  method: POST
+  payload: '{}'
+  username: !secret opns_key
+  password: !secret opns_secret
+  verify_ssl: false
+  content_type: application/json
+
+firewall_alias_reconfigure:
+  url: https://opnsense.mcfly.net/api/firewall/alias/reconfigure
+  method: POST
+  payload: '{}'
+  username: !secret opns_key
+  password: !secret opns_secret
+  verify_ssl: false
+  content_type: application/json
+
+wireguard_disable:
+  url: https://opnsense.mcfly.net/api/wireguard/general/set
+  method: POST
+  payload: '{"general":{"enabled":"0"}}'
+  username: !secret opns_key
+  password: !secret opns_secret
+  verify_ssl: false
+  content_type: application/json
+
+wireguard_enable:
+  url: https://opnsense.mcfly.net/api/wireguard/general/set
+  method: POST
+  payload: '{"general":{"enabled":"1"}}'
+  username: !secret opns_key
+  password: !secret opns_secret
+  verify_ssl: false
+  content_type: application/json
+
+wireguard_service_reconfigure:
+  url: https://opnsense.mcfly.net/api/wireguard/service/reconfigure
+  method: POST
+  payload: '{}'
+  username: !secret opns_key
+  password: !secret opns_secret
+  verify_ssl: false
+  content_type: application/json
+
+
+wireguard_server_set_server:
+  url: https://opnsense.mcfly.net/api/wireguard/server/setServer/b007cda3-7d52-472e-96b9-f0b4a8bf4ff8
+  method: POST
+  payload: '{"server": {"peers": "{{ states("sensor.wg0_selected_peer_id") }}"}}'
+  username: !secret opns_key
+  password: !secret opns_secret
+  verify_ssl: false
+  content_type: application/json
+
+airvpn_disconnect_opnsense:
+  url: https://airvpn.org/api/disconnect/?device=opnsense
+  method: GET
+  # payload: '{"device":"opnsense"}'
+  # payload: '{}'
+  content_type: application/json
+  headers:
+    API-KEY: !secret airvpn_api_key

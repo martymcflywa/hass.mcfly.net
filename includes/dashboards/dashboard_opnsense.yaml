@@ -26,7 +26,8 @@ views:
                 entities:
                   - entity: sensor.wg0_selected_peer
                     name: wg0 selected peer
-                    icon: mdi:vpn
+                  - entity: sensor.wg0_selected_peer_id
+                    name: wg0 selected peer id
               - type: glance
                 entities:
                   - entity: binary_sensor.vpn_hosts
