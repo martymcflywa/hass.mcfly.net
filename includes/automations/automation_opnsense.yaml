@@ -6,6 +6,25 @@
   action:
     - service: script.update_wg0_peers
 
+- id: select_wg0_peer
+  alias: Select wg0 peer
+  trigger:
+    - platform: state
+      entity_id: sensor.wg0_selected_peer_id
+  action:
+    - service: script.select_wg0_peer
+
+- id: message_wg0_peer_selected
+  alias: Message wg0 peer selected
+  trigger:
+    - platform: state
+      entity_id: sensor.wg0_selected_peer
+  action:
+    - service: notify.notify
+      data:
+        title: OPNSense
+        message: wg0 changed from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}.
+
 - id: update_wg0_peers_on_startup
   alias: Update wg0 peers on startup
   trigger:

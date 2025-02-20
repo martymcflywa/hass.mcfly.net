@@ -43,19 +43,10 @@ firewall_alias_reconfigure:
   verify_ssl: false
   content_type: application/json
 
-wireguard_disable:
-  url: https://opnsense.mcfly.net/api/wireguard/general/set
+wireguard_toggle_server:
+  url: https://opnsense.mcfly.net/api/wireguard/server/toggleServer/b007cda3-7d52-472e-96b9-f0b4a8bf4ff8
   method: POST
-  payload: '{"general":{"enabled":"0"}}'
-  username: !secret opns_key
-  password: !secret opns_secret
-  verify_ssl: false
-  content_type: application/json
-
-wireguard_enable:
-  url: https://opnsense.mcfly.net/api/wireguard/general/set
-  method: POST
-  payload: '{"general":{"enabled":"1"}}'
+  payload: '{}'
   username: !secret opns_key
   password: !secret opns_secret
   verify_ssl: false
@@ -70,8 +61,7 @@ wireguard_service_reconfigure:
   verify_ssl: false
   content_type: application/json
 
-
-wireguard_server_set_server:
+wireguard_server_set_peer:
   url: https://opnsense.mcfly.net/api/wireguard/server/setServer/b007cda3-7d52-472e-96b9-f0b4a8bf4ff8
   method: POST
   payload: '{"server": {"peers": "{{ states("sensor.wg0_selected_peer_id") }}"}}'
@@ -83,8 +73,7 @@ wireguard_server_set_server:
 airvpn_disconnect_opnsense:
   url: https://airvpn.org/api/disconnect/?device=opnsense
   method: GET
-  # payload: '{"device":"opnsense"}'
-  # payload: '{}'
   content_type: application/json
+  timeout: 30
   headers:
     API-KEY: !secret airvpn_api_key

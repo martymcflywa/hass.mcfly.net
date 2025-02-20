@@ -198,6 +198,54 @@ update_vpn_mobile_hosts:
         - service: input_boolean.turn_off
           entity_id: input_boolean.vpn_mobile_hosts
 
+select_wg0_peer:
+  sequence:
+    - service: script.toggle_vpn_hosts
+    - service: rest_command.wireguard_toggle_server
+      response_variable: wg_toggle_server_off_response
+    - if:
+      - condition: template
+        value_template: >
+          {{
+            wg_toggle_server_off_response.content.result == 'Disabled' and
+            wg_toggle_server_off_response.content.changed == true
+          }}
+      then:
+        - service: rest_command.wireguard_service_reconfigure
+          response_variable: wg_disable_reconfig_response
+        - if:
+          - condition: template
+            value_template: >
+              {{ wg_disable_reconfig_response.content.result == 'ok' }}
+          then:
+            - service: rest_command.airvpn_disconnect_opnsense
+              response_variable: airvpn_disconnect_response
+            - if:
+              - condition: template
+                value_template: >
+                  {{ airvpn_disconnect_response.content.result == 'ok' }}
+              then:
+                - service: rest_command.wireguard_server_set_peer
+                  response_variable: wg_set_peer_response
+                - if:
+                  - condition: template
+                    value_template: >
+                      {{ wg_set_peer_response.content.result == 'saved' }}
+                  then:
+                    - service: rest_command.wireguard_toggle_server
+                      response_variable: wg_toggle_server_on_response
+                    - if:
+                      - condition: template
+                        value_template: >
+                          {{
+                            wg_toggle_server_on_response.content.result == 'Enabled' and
+                            wg_toggle_server_on_response.content.changed == true
+                          }}
+                      then:
+                        - service: rest_command.wireguard_service_reconfigure
+                          response_variable: wg_enable_reconfig_response
+    - service: script.toggle_vpn_hosts
+
 # turn off wireguard
 # disconnect airvpn session
 # select wireguard peer
