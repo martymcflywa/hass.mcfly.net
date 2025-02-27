@@ -31,6 +31,12 @@
           {% set data.servers = data.servers + [peer.value] %}
         {% endfor %}
         {{ data.servers | join(', ') }}
+  binary_sensor:
+    - unique_id: wg0_enabled
+      name: wg0 enabled
+      value_template: >
+        {{ value_json.server.enabled }}
+
 - authentication: basic
   verify_ssl: false
   username: !secret opns_key

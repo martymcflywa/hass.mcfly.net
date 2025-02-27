@@ -33,6 +33,14 @@
   action:
     - service: script.update_wg0_peers
 
+- id: update_wg0_enabled_input_boolean_on_startup
+  alias: Update wg0_enabled input_boolean on startup
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: script.update_wg0_enabled
+
 - id: update_vpn_hosts_input_boolean_on_startup
   alias: Update vpn_hosts input_boolean on startup
   trigger:

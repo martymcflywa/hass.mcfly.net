@@ -5,12 +5,12 @@ views:
     sections:
         - cards:
           - type: vertical-stack
-            title: Wireguard
             cards:
               - type: heading
-                heading: wg0 peer
+                heading: wg0
               - type: entities
                 entities:
+                  - entity: switch.wg0_enabled
                   - entity: input_select.wg0_peers
               - type: heading
                 heading: Firewall alias

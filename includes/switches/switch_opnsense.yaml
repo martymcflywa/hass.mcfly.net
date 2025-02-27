@@ -56,3 +56,17 @@
         action: script.toggle_vpn_mobile_hosts
         target:
           entity_id: script.toggle_vpn_mobile_hosts
+
+    wg0_enabled:
+      unique_id: wg0_enabled
+      friendly_name: wg0 enabled
+      value_template: >
+        {{ states('input_boolean.wg0_enabled') }}
+      turn_on:
+        action: script.toggle_wg0_enabled
+        target:
+          entity_id: script.toggle_wg0_enabled
+      turn_off:
+        action: script.toggle_wg0_enabled
+        target:
+          entity_id: script.toggle_wg0_enabled

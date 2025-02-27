@@ -246,7 +246,36 @@ select_wg0_peer:
                           response_variable: wg_enable_reconfig_response
     - service: script.toggle_vpn_hosts
 
-# turn off wireguard
-# disconnect airvpn session
-# select wireguard peer
-# turn on wireguard
+toggle_wg0_enabled:
+  sequence:
+    - service: rest_command.wireguard_toggle_server
+      response_variable: wg_toggle_response
+    - service: rest_command.wireguard_service_reconfigure
+      response_variable: wg_reconfigure_response
+    - if:
+      - condition: template
+        value_template: >
+          {{ wg_toggle_response.content.result == 'Enabled' }}
+      then:
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.wg0_enabled
+      else:
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.wg0_enabled
+    - service: homeassistant.update_entity
+      entity_id: binary_sensor.wg0_enabled
+
+update_wg0_enabled:
+  sequence:
+    - service: homeassistant.update_entity
+      entity_id: binary_sensor.wg0_enabled
+    - if:
+      - condition: state
+        entity_id: binary_sensor.wg0_enabled
+        state: 'on'
+      then:
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.wg0_enabled
+      else:
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.wg0_enabled
