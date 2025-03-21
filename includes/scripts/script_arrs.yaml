@@ -1,0 +1,63 @@
+plexhole_radarr_hd_missing_movies_search:
+  sequence:
+    - service: rest_command.plexhole_radarr_hd_missing_movies_search
+    - service: notify.notify
+      data:
+        message: Missing movies search started
+        title: Radarr HD
+
+plexhole_radarr_4k_missing_movies_search:
+  sequence:
+    - service: rest_command.plexhole_radarr_4k_missing_movies_search
+    - service: notify.notify
+      data:
+        message: Missing movies search started
+        title: Radarr 4K
+
+plexhole_radarr_4k_dv_missing_movies_search:
+  sequence:
+    - service: rest_command.plexhole_radarr_4k_dv_missing_movies_search
+    - service: notify.notify
+      data:
+        message: Missing movies search started
+        title: Radarr 4K DV
+
+plexhole_radarr_anime_missing_movies_search:
+  sequence:
+    - service: rest_command.plexhole_radarr_anime_missing_movies_search
+    - service: notify.notify
+      data:
+        message: Missing movies search started
+        title: Radarr Anime
+
+plexhole_sonarr_hd_missing_episodes_search:
+  sequence:
+    - service: rest_command.plexhole_sonarr_hd_missing_episodes_search
+    - service: notify.notify
+      data:
+        message: Missing episodes search started
+        title: Sonarr HD
+
+plexhole_sonarr_4k_missing_episodes_search:
+  sequence:
+    - service: rest_command.plexhole_sonarr_4k_missing_episodes_search
+    - service: notify.notify
+      data:
+        message: Missing episodes search started
+        title: Sonarr 4K
+
+plexhole_sonarr_4k_dv_missing_episodes_search:
+  sequence:
+    - service: rest_command.plexhole_sonarr_4k_dv_missing_episodes_search
+    - service: notify.notify
+      data:
+        message: Missing episodes search started
+        title: Sonarr 4K DV
+
+plexhole_sonarr_anime_missing_episodes_search:
+  sequence:
+    - service: rest_command.plexhole_sonarr_anime_missing_episodes_search
+    - service: notify.notify
+      data:
+        message: Missing episodes search started
+        title: Sonarr Anime

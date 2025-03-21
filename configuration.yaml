@@ -17,6 +17,7 @@ binary_sensor opnsense: !include includes/sensors/rest_binary_sensor_opnsense.ya
 rest: !include includes/sensors/rest_opnsense.yaml
 rest_command: !include includes/rest_commands/rest_commands.yaml
 script opnsense: !include includes/scripts/script_opnsense.yaml
+script arrs: !include includes/scripts/script_arrs.yaml
 input_select: !include includes/helpers/input_select.yaml
 input_boolean: !include includes/helpers/input_boolean.yaml
 automation opnsense: !include includes/automations/automation_opnsense.yaml
