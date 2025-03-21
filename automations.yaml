@@ -438,3 +438,36 @@
       title: OPNSense
       message: vpn_mobile_hosts {{ states('binary_sensor.vpn_mobile_hosts') }}
   mode: single
+- id: '1742533495766'
+  alias: Arrs search for missing content
+  description: ''
+  triggers:
+  - trigger: time
+    at: '11:00:00'
+  conditions: []
+  actions:
+  - action: script.plexhole_radarr_hd_missing_movies_search
+    metadata: {}
+    data: {}
+  - action: script.plexhole_radarr_4k_missing_movies_search
+    metadata: {}
+    data: {}
+  - action: script.plexhole_radarr_4k_dv_missing_movies_search
+    metadata: {}
+    data: {}
+  - action: script.plexhole_radarr_anime_missing_movies_search
+    metadata: {}
+    data: {}
+  - action: script.plexhole_sonarr_hd_missing_episodes_search
+    metadata: {}
+    data: {}
+  - action: script.plexhole_sonarr_4k_missing_episodes_search
+    metadata: {}
+    data: {}
+  - action: script.plexhole_sonarr_4k_dv_missing_episodes_search
+    metadata: {}
+    data: {}
+  - action: script.plexhole_sonarr_anime_missing_episodes_search
+    metadata: {}
+    data: {}
+  mode: single
