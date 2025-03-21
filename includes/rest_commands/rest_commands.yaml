@@ -71,7 +71,7 @@ wireguard_server_set_peer:
   content_type: application/json
 
 airvpn_disconnect_opnsense:
-  url: https://airvpn.org/api/disconnect/?device=opnsense
+  url: https://airvpn.org/api/disconnect/
   method: GET
   content_type: application/json
   timeout: 30
