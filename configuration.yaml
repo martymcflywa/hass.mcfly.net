@@ -36,3 +36,8 @@ lovelace:
       title: Teslamate
       show_in_sidebar: true
       filename: includes/dashboards/dashboard_teslamate.yaml
+    dashboard-plex:
+      mode: yaml
+      title: Plex
+      show_in_sidebar: true
+      filename: includes/dashboards/dashboard_plex.yaml

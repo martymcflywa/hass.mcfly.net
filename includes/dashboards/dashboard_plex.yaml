@@ -1,0 +1,50 @@
+views:
+  - path: plex
+    title: Plex
+    sections:
+      - title: Plexhole
+        cards:
+          - type: heading
+            heading: Search for missing content
+          - type: vertical-stack
+            cards:
+              - type: button
+                name: Radarr HD
+                tap_action:
+                  action: call-service
+                  service: script.plexhole_radarr_hd_missing_movies_search
+              - type: button
+                name: Radarr 4K
+                tap_action:
+                  action: call-service
+                  service: script.plexhole_radarr_4k_missing_movies_search
+              - type: button
+                name: Radarr 4K DV
+                tap_action:
+                  action: call-service
+                  service: script.plexhole_radarr_4k_dv_missing_movies_search
+              - type: button
+                name: Radarr Anime
+                tap_action:
+                  action: call-service
+                  service: script.plexhole_radarr_anime_missing_movies_search
+              - type: button
+                name: Sonarr HD
+                tap_action:
+                  action: call-service
+                  service: script.plexhole_sonarr_hd_missing_episodes_search
+              - type: button
+                name: Sonarr 4K
+                tap_action:
+                  action: call-service
+                  service: script.plexhole_sonarr_4k_missing_episodes_search
+              - type: button
+                name: Sonarr 4K DV
+                tap_action:
+                  action: call-service
+                  service: script.plexhole_sonarr_4k_dv_missing_episodes_search
+              - type: button
+                name: Sonarr Anime
+                tap_action:
+                  action: call-service
+                  service: script.plexhole_sonarr_anime_missing_episodes_search
