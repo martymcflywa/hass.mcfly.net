@@ -61,3 +61,18 @@ plexhole_sonarr_anime_missing_episodes_search:
       data:
         message: Missing episodes search started
         title: Sonarr Anime
+
+plexhole_test_all_indexers:
+  sequence:
+    - service: rest_command.plexhole_radarr_hd_test_all_indexers
+    - service: rest_command.plexhole_radarr_4k_test_all_indexers
+    - service: rest_command.plexhole_radarr_4k_dv_test_all_indexers
+    - service: rest_command.plexhole_radarr_anime_test_all_indexers
+    - service: rest_command.plexhole_sonarr_hd_test_all_indexers
+    - service: rest_command.plexhole_sonarr_4k_test_all_indexers
+    - service: rest_command.plexhole_sonarr_4k_dv_test_all_indexers
+    - service: rest_command.plexhole_sonarr_anime_test_all_indexers
+    - service: notify.notify
+      data:
+        message: Test all indexers started
+        title: Radarr and Sonarr
