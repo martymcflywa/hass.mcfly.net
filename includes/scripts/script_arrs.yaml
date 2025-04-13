@@ -76,3 +76,11 @@ plexhole_test_all_indexers:
       data:
         message: Test all indexers started
         title: Radarr and Sonarr
+
+zilean_dmm_on_demand_scrape:
+  sequence:
+    - service: rest_command.zilean_dmm_on_demand_scrape
+    - service: notify.notify
+      data:
+        mesasge: DMM on demand scrape started
+        title: Zilean

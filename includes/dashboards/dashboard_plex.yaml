@@ -57,3 +57,8 @@ views:
                 tap_action:
                   action: call-service
                   service: script.plexhole_test_all_indexers
+              - type: button
+                name: Zilean dmm on demand scrape
+                tap_action:
+                  action: call-service
+                  service: script.zilean_dmm_on_demand_scrape

@@ -213,3 +213,9 @@ plexhole_sonarr_anime_test_all_indexers:
   headers:
     x-api-key: !secret plexhole_sonarr_anime_api_key
     x-requested-with: XMLHttpRequest
+
+zilean_dmm_on_demand_scrape:
+  url: http://plexhole.mcfly.net:8181/dmm/on-demand-scrape
+  method: GET
+  headers:
+    x-api-key: !secret zilean_api_key

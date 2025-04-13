@@ -471,3 +471,15 @@
     metadata: {}
     data: {}
   mode: single
+- id: '1744543296449'
+  alias: Zilean dmm on demand scrape every two hours
+  description: ''
+  triggers:
+  - trigger: time_pattern
+    hours: /2
+  conditions: []
+  actions:
+  - action: script.zilean_dmm_on_demand_scrape
+    metadata: {}
+    data: {}
+  mode: single
