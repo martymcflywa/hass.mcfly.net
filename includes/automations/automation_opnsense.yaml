@@ -72,3 +72,11 @@
       event: start
   action:
     - service: script.update_vpn_mobile_hosts
+
+- id: update_vpn_proxmox_hosts_input_boolean_on_startup
+  alias: Update vpn_proxmox_hosts input_boolean on startup
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: script.update_vpn_proxmox_hosts

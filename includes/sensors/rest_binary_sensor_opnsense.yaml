@@ -45,3 +45,15 @@
   password: !secret opns_secret
   device_class: connectivity
   value_template: '{{ value_json.alias.enabled }}'
+
+- platform: rest
+  unique_id: vpn_proxmox_hosts
+  name: VPN Proxmox Hosts
+  resource: https://opnsense.mcfly.net/api/firewall/alias/getItem/68a8dbb9-3aed-4f36-acef-56cc17463b4b
+  method: GET
+  verify_ssl: false
+  authentication: basic
+  username: !secret opns_key
+  password: !secret opns_secret
+  device_class: connectivity
+  value_template: '{{ value_json.alias.enabled }}'

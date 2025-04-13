@@ -6,5 +6,7 @@ vpn_pc_hosts:
   name: VPN PC Hosts
 vpn_mobile_hosts:
   name: VPN Mobile Hosts
+vpn_proxmox_hosts:
+  name: VPN Proxmox Hosts
 wg0_enabled:
   name: wg0 enabled

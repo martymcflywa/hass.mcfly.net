@@ -18,6 +18,7 @@ views:
                 entities:
                   - entity: switch.vpn_hosts
                   - entity: switch.vpn_pihole_hosts
+                  - entity: switch.vpn_proxmox_hosts
                   - entity: switch.vpn_pc_hosts
                   - entity: switch.vpn_mobile_hosts
               - type: heading

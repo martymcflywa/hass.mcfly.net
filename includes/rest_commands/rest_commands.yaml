@@ -34,6 +34,15 @@ toggle_vpn_mobile_hosts:
   verify_ssl: false
   content_type: application/json
 
+toggle_vpn_proxmox_hosts:
+  url: https://opnsense.mcfly.net/api/firewall/alias/toggleItem/68a8dbb9-3aed-4f36-acef-56cc17463b4b
+  method: POST
+  payload: '{}'
+  username: !secret opns_key
+  password: !secret opns_secret
+  verify_ssl: false
+  content_type: application/json
+
 firewall_alias_reconfigure:
   url: https://opnsense.mcfly.net/api/firewall/alias/reconfigure
   method: POST
