@@ -22,6 +22,7 @@ input_select: !include includes/helpers/input_select.yaml
 input_boolean: !include includes/helpers/input_boolean.yaml
 automation opnsense: !include includes/automations/automation_opnsense.yaml
 switch opnsense: !include includes/switches/switch_opnsense.yaml
+shell_command: !include includes/shell_commands/shell_commands.yaml
 
 lovelace:
   mode: storage
