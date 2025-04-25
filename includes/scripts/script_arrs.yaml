@@ -79,8 +79,10 @@ plexhole_test_all_indexers:
 
 zilean_dmm_on_demand_scrape:
   sequence:
+    - service: shell_command.clear_dmm_tmp
+    - delay: 60
     - service: rest_command.zilean_dmm_on_demand_scrape
     - service: notify.notify
       data:
-        mesasge: DMM on demand scrape started
+        message: DMM on demand scrape started
         title: Zilean
