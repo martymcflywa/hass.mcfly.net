@@ -228,3 +228,11 @@ zilean_dmm_on_demand_scrape:
   method: GET
   headers:
     x-api-key: !secret zilean_api_key
+
+iptvboss_nogui_sync:
+  url: !secret iptvboss_nogui_sync_url
+  method: GET
+
+iptvboss_reload_xc:
+  url: !secret iptvboss_reload_xc_url
+  method: GET
