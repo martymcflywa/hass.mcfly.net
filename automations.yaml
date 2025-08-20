@@ -484,3 +484,28 @@
     metadata: {}
     data: {}
   mode: single
+- id: '1750462952070'
+  alias: Run iptvboss nogui sync
+  description: ''
+  triggers:
+  - trigger: time_pattern
+    hours: /2
+  conditions: []
+  actions:
+  - action: rest_command.iptvboss_nogui_sync
+    metadata: {}
+    data: {}
+  mode: single
+- id: '1750462999429'
+  alias: Run iptvboss reload xc
+  description: ''
+  triggers:
+  - trigger: time_pattern
+    hours: /2
+    minutes: '15'
+  conditions: []
+  actions:
+  - action: rest_command.iptvboss_reload_xc
+    metadata: {}
+    data: {}
+  mode: single
