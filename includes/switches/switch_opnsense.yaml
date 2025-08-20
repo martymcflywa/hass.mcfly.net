@@ -71,6 +71,20 @@
         target:
           entity_id: script.toggle_vpn_proxmox_hosts
 
+    vpn_dispatcharr:
+      unique_id: vpn_dispatcharr
+      friendly_name: VPN Dispatcharr
+      value_template: >
+        {{ states('input_boolean.vpn_dispatcharr') }}
+      turn_on:
+        action: script.toggle_vpn_dispatcharr
+        target:
+          entity_id: script.toggle_vpn_dispatcharr
+      turn_off:
+        action: script.toggle_vpn_dispatcharr
+        target:
+          entity_id: script.toggle_vpn_dispatcharr
+
     wg0_enabled:
       unique_id: wg0_enabled
       friendly_name: wg0 enabled

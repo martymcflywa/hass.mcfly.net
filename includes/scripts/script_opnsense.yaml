@@ -143,6 +143,35 @@ toggle_vpn_proxmox_hosts:
             - service: homeassistant.update_entity
               entity_id: binary_sensor.vpn_proxmox_hosts
 
+toggle_vpn_dispatcharr:
+  sequence:
+    - service: rest_command.toggle_vpn_dispatcharr
+      response_variable: toggle_response
+    - if:
+      - condition: template
+        value_template: >
+          {{ toggle_response.content.changed == true }}
+      then:
+        - service: rest_command.firewall_alias_reconfigure
+          response_variable: alias_reconfigure_response
+        - if:
+          - condition: template
+            value_template: >
+              {{ alias_reconfigure_response.content.status == "ok" }}
+          then:
+            - if:
+              - condition: template
+                value_template: >
+                  {{ toggle_response.content.result == 'Enabled' }}
+              then:
+                - service: input_boolean.turn_on
+                  entity_id: input_boolean.vpn_dispatcharr
+              else:
+                - service: input_boolean.turn_off
+                  entity_id: input_boolean.vpn_dispatcharr
+            - service: homeassistant.update_entity
+              entity_id: binary_sensor.vpn_dispatcharr
+
 update_wg0_peers:
   sequence:
     - service: input_select.set_options
@@ -241,6 +270,21 @@ update_vpn_proxmox_hosts:
       else:
         - service: input_boolean.turn_off
           entity_id: input_boolean.vpn_proxmox_hosts
+
+update_vpn_dispatcharr:
+  sequence:
+    - service: homeassistant.update_entity
+      entity_id: binary_sensor.vpn_dispatcharr
+    - if:
+      - condition: state
+        entity_id: binary_sensor.vpn_dispatcharr
+        state: 'on'
+      then:
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.vpn_dispatcharr
+      else:
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.vpn_dispatcharr
 
 select_wg0_peer:
   sequence:

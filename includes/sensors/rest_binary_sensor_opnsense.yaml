@@ -57,3 +57,15 @@
   password: !secret opns_secret
   device_class: connectivity
   value_template: '{{ value_json.alias.enabled }}'
+
+- platform: rest
+  unique_id: vpn_dispatcharr
+  name: VPN Dispatcharr
+  resource: https://opnsense.mcfly.net/api/firewall/alias/getItem/5c7fcafc-af6c-439c-bb1b-b02f1d12ae0f
+  method: GET
+  verify_ssl: false
+  authentication: basic
+  username: !secret opns_key
+  password: !secret opns_secret
+  device_class: connectivity
+  value_template: '{{ value_json.alias.enabled }}'

@@ -19,6 +19,7 @@ views:
                   - entity: switch.vpn_hosts
                   - entity: switch.vpn_pihole_hosts
                   - entity: switch.vpn_proxmox_hosts
+                  - entity: switch.vpn_dispatcharr
                   - entity: switch.vpn_pc_hosts
                   - entity: switch.vpn_mobile_hosts
               - type: heading
@@ -43,8 +44,20 @@ views:
                       action: call-service
                       service: script.toggle_vpn_pihole_hosts
                       entity_id: binary_sensor.vpn_pihole_hosts
+                  - entity: binary_sensor.vpn_proxmox_hosts
+                    name: Proxmox hosts
+                    tap_action:
+                      action: call-service
+                      service: script.toggle_vpn_proxmox_hosts
+                      entity_id: binary_sensor.vpn_proxmox_hosts
               - type: glance
                 entities:
+                  - entity: binary_sensor.vpn_dispatcharr
+                    name: Dispatcharr
+                    tap_action:
+                      action: call-service
+                      service: script.toggle_vpn_dispatcharr
+                      entity_id: binary_sensor.vpn_dispatcharr
                   - entity: binary_sensor.vpn_pc_hosts
                     name: PC
                     tap_action:

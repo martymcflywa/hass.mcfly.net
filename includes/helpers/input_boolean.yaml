@@ -8,5 +8,7 @@ vpn_mobile_hosts:
   name: VPN Mobile Hosts
 vpn_proxmox_hosts:
   name: VPN Proxmox Hosts
+vpn_dispatcharr:
+  name: VPN Dispatcharr
 wg0_enabled:
   name: wg0 enabled

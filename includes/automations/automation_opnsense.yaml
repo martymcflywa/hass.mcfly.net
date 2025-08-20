@@ -80,3 +80,11 @@
       event: start
   action:
     - service: script.update_vpn_proxmox_hosts
+
+- id: update_vpn_dispatcharr_input_boolean_on_startup
+  alias: Update vpn_dispatcharr input_boolean on startup
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: script.update_vpn_dispatcharr
