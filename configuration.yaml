@@ -14,13 +14,14 @@ mqtt: !include includes/sensors/sensor_mqtt.yaml
 sems2mqtt: !include sems2mqtt.yaml
 
 binary_sensor opnsense: !include includes/sensors/rest_binary_sensor_opnsense.yaml
-rest: !include includes/sensors/rest_opnsense.yaml
+rest: !include_dir_merge_list includes/sensors/rest/
 rest_command: !include includes/rest_commands/rest_commands.yaml
 script opnsense: !include includes/scripts/script_opnsense.yaml
 script arrs: !include includes/scripts/script_arrs.yaml
 input_select: !include includes/helpers/input_select.yaml
 input_boolean: !include includes/helpers/input_boolean.yaml
 automation opnsense: !include includes/automations/automation_opnsense.yaml
+automation dispatcharr: !include includes/automations/automation_dispatcharr.yaml
 switch opnsense: !include includes/switches/switch_opnsense.yaml
 shell_command: !include includes/shell_commands/shell_commands.yaml
 

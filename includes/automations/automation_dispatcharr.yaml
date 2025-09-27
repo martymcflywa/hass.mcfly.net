@@ -1,0 +1,10 @@
+- id: refresh_ytm3u_m3u_and_epg
+  alias: Refresh ytm3u m3u and epg # per dispatcharr_token scan interval
+  trigger:
+    - platform: homeassistant
+      event: start
+    - platform: state
+      entity_id: sensor.dispatcharr_token
+  action:
+    - service: rest_command.dispatcharr_ytm3u_m3u_account_refresh
+    - service: rest_command.dispatcharr_ytm3u_epg_import

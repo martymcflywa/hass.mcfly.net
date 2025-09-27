@@ -245,3 +245,19 @@ iptvboss_nogui_sync:
 iptvboss_reload_xc:
   url: !secret iptvboss_reload_xc_url
   method: GET
+
+dispatcharr_ytm3u_m3u_account_refresh:
+  url: !secret dispatcharr_url_ytm3u_account_refresh
+  method: POST
+  content_type: application/json
+  payload: '{}'
+  headers:
+    Authorization: "Bearer {{state_attr('sensor.dispatcharr_token', 'access')}}"
+
+dispatcharr_ytm3u_epg_import:
+  url: !secret dispatcharr_url_ytm3u_epg_import
+  method: POST
+  content_type: application/json
+  payload: '{"id": "5"}'
+  headers:
+    Authorization: "Bearer {{state_attr('sensor.dispatcharr_token', 'access')}}"

@@ -1,0 +1,14 @@
+- authentication: basic
+  verify_ssl: false
+  resource: !secret dispatcharr_url_create_token
+  method: POST
+  payload: !secret dispatcharr_payload_create_token
+  headers:
+    Content-Type: application/json
+  scan_interval: 1800
+  sensor:
+    - unique_id: dispatcharr_token
+      name: Dispatcharr token
+      json_attributes:
+        - access
+      value_template: "ok"
