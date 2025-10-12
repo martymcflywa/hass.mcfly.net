@@ -258,6 +258,6 @@ dispatcharr_ytm3u_epg_import:
   url: !secret dispatcharr_url_ytm3u_epg_import
   method: POST
   content_type: application/json
-  payload: '{"id": "5"}'
+  payload: '{"id": "1"}'
   headers:
     Authorization: "Bearer {{state_attr('sensor.dispatcharr_token', 'access')}}"
