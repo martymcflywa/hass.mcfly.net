@@ -5,7 +5,6 @@
   payload: !secret dispatcharr_payload_create_token
   headers:
     Content-Type: application/json
-  scan_interval: 1800
   sensor:
     - unique_id: dispatcharr_token
       name: Dispatcharr token

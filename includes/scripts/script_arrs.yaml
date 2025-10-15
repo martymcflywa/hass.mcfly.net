@@ -1,3 +1,12 @@
+dispatcharr_update_ytm3u_m3u_epg:
+  sequence:
+    - service: rest_command.dispatcharr_ytm3u_m3u_account_refresh
+    - service: rest_command.dispatcharr_ytm3u_epg_import
+    - service: notify.notify
+      data:
+        message: ytm3u update started
+        title: Dispatcharr
+
 plexhole_radarr_hd_missing_movies_search:
   sequence:
     - service: rest_command.plexhole_radarr_hd_missing_movies_search
